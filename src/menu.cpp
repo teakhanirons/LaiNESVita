@@ -59,6 +59,7 @@ void Menu::update(int a) {
         if (cursor < 0) cursor = length - 1;
         if (cursor < 0) cursor = 0;
     }
+    render();
     if(length > 0) {
         if (a == SELECT) { 
             char path[256] = "ux0:data/LaiNES/\0";
@@ -143,7 +144,7 @@ FileMenu::FileMenu() {
     };
     sceDisplaySetFrameBuf(&fb, SCE_DISPLAY_SETBUF_NEXTFRAME);
     sceDisplayWaitVblankStart();
-
+    render();
 }
 
 

@@ -103,7 +103,6 @@ void run() {
              
         if(pause) {
 			control_check(0);
-			menu->render();
 			if(ctrl_press.buttons & SCE_CTRL_UP) menu->update(UP);
 			if(ctrl_press.buttons & SCE_CTRL_DOWN) menu->update(DOWN);
 			if(ctrl_press.buttons & SCE_CTRL_CROSS || ctrl_press.buttons & SCE_CTRL_CIRCLE || ctrl_press.buttons & SCE_CTRL_START) menu->update(SELECT);
