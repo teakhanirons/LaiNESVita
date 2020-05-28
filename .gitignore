@@ -1,3 +1,9 @@
 .sconsign.dblite
 laines
 *.o
+*.elf
+*.velf
+*.vpk
+param.sfo
+sce_sys/param.sfo
+eboot.bin
