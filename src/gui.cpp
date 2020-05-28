@@ -1,4 +1,5 @@
 #include <csignal>
+#include "Sound_Queue.h"
 #include "include/apu.hpp"
 #include "include/cartridge.hpp"
 #include "include/cpu.hpp"
@@ -25,6 +26,7 @@
 
 namespace GUI {
 
+Sound_Queue* soundQueue;
 SceCtrlData ctrl_peek, ctrl_press;
 void *fb_addr = NULL;
 
@@ -36,6 +38,8 @@ bool pause = true;
 void init() {
 
     APU::init();
+    soundQueue = new Sound_Queue;
+    soundQueue->init(48000);
 
     fileMenu = new FileMenu;
     menu = fileMenu;
@@ -47,7 +51,7 @@ void control_check(int n) {
 	ctrl_press.buttons = ctrl_peek.buttons & ~ctrl_press.buttons;
 }
 
-uint8_t get_joypad_state(int n) {
+Uint8 get_joypad_state(int n) {
 
     u8 j = 0;
     int pad = 0;
@@ -89,6 +93,10 @@ void new_frame(u32* pixels) {
             menu->fb_base[((i + 1 + heightstart) * FB_PITCH) + j + 1 + widthstart] = pixels[(i / 2 * WIDTH) + j / 2];
         }
     }
+}
+
+void new_samples(const blip_sample_t* samples, size_t count) { 
+    soundQueue->write(samples, count); 
 }
 
 void toggle_pause() { pause = false; }
