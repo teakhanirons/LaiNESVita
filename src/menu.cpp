@@ -125,13 +125,12 @@ FileMenu::FileMenu() {
     
     sceKernelGetMemBlockBase(mem_id, (void**)&fb_base);
     fnblit_set_fb(fb_base, FB_PITCH, FB_WIDTH, FB_HEIGHT);
-    
+    fnblit_printf(960 / 2 - strlen("LaiNES") * 7 / 2, 0, "LaiNES");
     for(int i = 0; i < length; i++) {
         char name[256] = "";
         strcat(name, getItem(i + 1));
         sceClibPrintf("Found a file: %s\n", name);
         fnblit_printf(960 / 2 - strlen(name) * 7 / 2, (i + 2) * 14, name);
-        fnblit_printf(960 / 2 - strlen("LaiNES") * 7 / 2, 0, "LaiNES");
     }
 
     SceDisplayFrameBuf fb = {
