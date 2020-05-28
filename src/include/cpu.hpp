@@ -10,8 +10,7 @@ typedef u16 (*Mode)(void);              // Addressing mode.
 
 /* Processor flags */
 enum Flag {C, Z, I, D, V, N};
-class Flags
-{
+class Flags {
     bool f[6];
 
   public:

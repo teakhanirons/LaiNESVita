@@ -1,11 +1,14 @@
 #include <cstdlib>
 #include <cstring>
 #include <iostream>
-#include "apu.hpp"
-#include "cartridge.hpp"
-#include "joypad.hpp"
-#include "ppu.hpp"
-#include "cpu.hpp"
+#include "include/apu.hpp"
+#include "include/cartridge.hpp"
+#include "include/joypad.hpp"
+#include "include/ppu.hpp"
+#include "include/cpu.hpp"
+
+#include <psp2/kernel/clib.h> 
+#include <psp2/kernel/dmac.h> 
 
 namespace CPU {
 
@@ -239,7 +242,7 @@ void exec()
         case 0xF9: return SBC<aby>()  ;  case 0xFD: return SBC<abx>()  ;
         case 0xFE: return INC<_abx>() ;
         default:
-            std::cout << "Invalid Opcode! PC: " << PC << " Opcode: 0x" << std::hex << (int)(rd(PC - 1)) << "\n";
+            sceClibPrintf("Invalid Opcode! PC: %i Opcode: 0x%x\n", PC, (int)(rd(PC - 1)));
             return NOP();
     }
 }
@@ -256,7 +259,7 @@ void power()
 
     P.set(0x04);
     A = X = Y = S = 0x00;
-    memset(ram, 0xFF, sizeof(ram));
+    sceDmacMemset(ram, 0xFF, sizeof(ram));
 
     nmi = irq = false;
     INT<RESET>();

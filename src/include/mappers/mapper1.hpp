@@ -2,8 +2,7 @@
 #include "mapper.hpp"
 
 
-class Mapper1 : public Mapper
-{
+class Mapper1 : public Mapper {
     int writeN;
     u8 tmpReg;
     u8 regs[4];
@@ -11,8 +10,7 @@ class Mapper1 : public Mapper
     void apply();
 
   public:
-    Mapper1(u8* rom) : Mapper(rom)
-    {
+    Mapper1(u8* rom) : Mapper(rom) {
         regs[0] = 0x0C;
         writeN = tmpReg = regs[1] = regs[2] = regs[3] = 0;
         apply();

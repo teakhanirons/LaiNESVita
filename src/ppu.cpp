@@ -1,7 +1,12 @@
-#include "cartridge.hpp"
-#include "cpu.hpp"
-#include "gui.hpp"
-#include "ppu.hpp"
+#include <cstring>
+#include "include/cartridge.hpp"
+#include "include/cpu.hpp"
+#include "include/gui.hpp"
+#include "include/ppu.hpp"
+
+#include <psp2/kernel/clib.h> 
+#include <psp2/kernel/dmac.h> 
+
 
 namespace PPU {
 #include "palette.inc"
@@ -344,9 +349,9 @@ void reset()
     scanline = dot = 0;
     ctrl.r = mask.r = status.r = 0;
 
-    memset(pixels, 0x00, sizeof(pixels));
-    memset(ciRam,  0xFF, sizeof(ciRam));
-    memset(oamMem, 0x00, sizeof(oamMem));
+    sceDmacMemset(pixels, 0x00, sizeof(pixels));
+    sceDmacMemset(ciRam,  0xFF, sizeof(ciRam));
+    sceDmacMemset(oamMem, 0x00, sizeof(oamMem));
 }
 
 

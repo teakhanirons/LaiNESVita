@@ -3,8 +3,7 @@
 #include "common.hpp"
 
 
-class Mapper
-{
+class Mapper {
     u8* rom;
     bool chrRam = false;
 

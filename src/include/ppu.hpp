@@ -8,8 +8,7 @@ enum Scanline  { VISIBLE, POST, NMI, PRE };
 enum Mirroring { VERTICAL, HORIZONTAL };
 
 /* Sprite buffer */
-struct Sprite
-{
+struct Sprite {
     u8 id;     // Index in OAM.
     u8 x;      // X position.
     u8 y;      // Y position.
@@ -20,10 +19,8 @@ struct Sprite
 };
 
 /* PPUCTRL ($2000) register */
-union Ctrl
-{
-    struct
-    {
+union Ctrl {
+    struct {
         unsigned nt     : 2;  // Nametable ($2000 / $2400 / $2800 / $2C00).
         unsigned incr   : 1;  // Address increment (1 / 32).
         unsigned sprTbl : 1;  // Sprite pattern table ($0000 / $1000).
@@ -36,10 +33,8 @@ union Ctrl
 };
 
 /* PPUMASK ($2001) register */
-union Mask
-{
-    struct
-    {
+union Mask {
+    struct {
         unsigned gray    : 1;  // Grayscale.
         unsigned bgLeft  : 1;  // Show background in leftmost 8 pixels.
         unsigned sprLeft : 1;  // Show sprite in leftmost 8 pixels.
@@ -53,10 +48,8 @@ union Mask
 };
 
 /* PPUSTATUS ($2002) register */
-union Status
-{
-    struct
-    {
+union Status {
+    struct {
         unsigned bus    : 5;  // Not significant.
         unsigned sprOvf : 1;  // Sprite overflow.
         unsigned sprHit : 1;  // Sprite 0 Hit.
@@ -66,17 +59,14 @@ union Status
 };
 
 /* Loopy's VRAM address */
-union Addr
-{
-    struct
-    {
+union Addr {
+    struct {
         unsigned cX : 5;  // Coarse X.
         unsigned cY : 5;  // Coarse Y.
         unsigned nt : 2;  // Nametable.
         unsigned fY : 3;  // Fine Y.
     };
-    struct
-    {
+    struct {
         unsigned l : 8;
         unsigned h : 7;
     };

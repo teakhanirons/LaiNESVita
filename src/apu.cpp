@@ -1,6 +1,6 @@
-#include "gui.hpp"
-#include "cpu.hpp"
-#include "apu.hpp"
+#include "include/gui.hpp"
+#include "include/cpu.hpp"
+#include "include/apu.hpp"
 
 namespace APU {
 
@@ -13,7 +13,7 @@ blip_sample_t outBuf[OUT_SIZE];
 
 void init()
 {
-    buf.sample_rate(96000);
+    buf.sample_rate(48000);
     buf.clock_rate(1789773);
 
     apu.output(&buf);
