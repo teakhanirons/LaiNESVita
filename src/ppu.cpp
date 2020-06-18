@@ -5,7 +5,6 @@
 #include "include/ppu.hpp"
 
 #include <psp2/kernel/clib.h> 
-#include <psp2/kernel/dmac.h> 
 
 
 namespace PPU {
@@ -349,9 +348,9 @@ void reset()
     scanline = dot = 0;
     ctrl.r = mask.r = status.r = 0;
 
-    sceDmacMemset(pixels, 0x00, sizeof(pixels));
-    sceDmacMemset(ciRam,  0xFF, sizeof(ciRam));
-    sceDmacMemset(oamMem, 0x00, sizeof(oamMem));
+    memset(pixels, 0x00, sizeof(pixels));
+    memset(ciRam,  0xFF, sizeof(ciRam));
+    memset(oamMem, 0x00, sizeof(oamMem));
 }
 
 

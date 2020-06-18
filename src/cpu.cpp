@@ -8,7 +8,6 @@
 #include "include/cpu.hpp"
 
 #include <psp2/kernel/clib.h> 
-#include <psp2/kernel/dmac.h> 
 
 namespace CPU {
 
@@ -259,7 +258,7 @@ void power()
 
     P.set(0x04);
     A = X = Y = S = 0x00;
-    sceDmacMemset(ram, 0xFF, sizeof(ram));
+    memset(ram, 0xFF, sizeof(ram));
 
     nmi = irq = false;
     INT<RESET>();

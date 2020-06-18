@@ -12,7 +12,6 @@
 #include <psp2/kernel/clib.h>
 #include <psp2/kernel/processmgr.h>
 #include <psp2/kernel/sysmem.h>
-#include <psp2/kernel/dmac.h> 
 #include <fnblit.h>
 
 #define UP 1
@@ -67,7 +66,7 @@ void Menu::update(int a) {
             sceClibPrintf("Loading from path: %s\n", path);
             Cartridge::load(path); 
             GUI::toggle_pause();
-            sceDmacMemset(fb_base, 0x00, FB_LEN);
+            memset(fb_base, 0x00, FB_LEN);
         }
     }
 }
@@ -98,7 +97,7 @@ FileMenu::FileMenu() {
             SceIoDirent dir;
             res = sceIoDread(dfd, &dir);
             if(res > 0) {
-                sceDmacMemcpy(current->d_name, dir.d_name, strlen(dir.d_name)+1);
+                memcpy(current->d_name, dir.d_name, strlen(dir.d_name)+1);
                 current->next = NULL;
                 current->next = (SceIoDirenter *) malloc(sizeof(SceIoDirenter));
                 current = current->next;
