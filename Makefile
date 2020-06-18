@@ -23,7 +23,7 @@ export INCLUDE	:= $(foreach dir,$(SOURCES),-I$(CURDIR)/$(dir))
 PREFIX  = arm-dolce-eabi
 CC      = $(PREFIX)-gcc
 CXX      = $(PREFIX)-g++
-CFLAGS  = $(INCLUDE) -Wl,-q -O3
+CFLAGS  = $(INCLUDE) -g0 -Wl,-q -O3
 CXXFLAGS  = $(CFLAGS) -std=gnu++14 -fpermissive -fexceptions
 ASFLAGS = $(CFLAGS)
 
