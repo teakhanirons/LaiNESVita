@@ -23,8 +23,8 @@ export INCLUDE	:= $(foreach dir,$(SOURCES),-I$(CURDIR)/$(dir))
 PREFIX  = arm-dolce-eabi
 CC      = $(PREFIX)-gcc
 CXX      = $(PREFIX)-g++
-CFLAGS  = $(INCLUDE) -g -Wl,-q -O3
-CXXFLAGS  = $(INCLUDE) -g -Wl,-q -O3 -std=gnu++14 -fpermissive -fexceptions
+CFLAGS  = $(INCLUDE) -Wl,-q -O3
+CXXFLAGS  = $(CFLAGS) -std=gnu++14 -fpermissive -fexceptions
 ASFLAGS = $(CFLAGS)
 
 all: $(TARGET).vpk
